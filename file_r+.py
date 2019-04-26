@@ -13,6 +13,6 @@ if os.path.exists(filePath):
     f = open(filePath, 'r+', encoding='utf-8')
 else:
     f = open(filePath, 'w+', encoding='utf-8')
-content = f.read()  # 如果open时使用的encoding和文件本身的encoding不一致的话，那么这里将将会产生错误
+content = f.read()
 f.write('你想要写入的信息2222')
 f.close()
