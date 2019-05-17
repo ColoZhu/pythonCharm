@@ -14,5 +14,5 @@ if os.path.exists(filePath):
 else:
     f = open(filePath, 'w+', encoding='utf-8')
 content = f.read()
-f.write('你想要写入的信息2222')
+f.write('你想要写入的信息2222222')
 f.close()
