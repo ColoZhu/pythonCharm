@@ -13,23 +13,24 @@ cmath 模块的函数跟 math 模块函数基本一致，区别是 cmath 模块�
 要使用 math 或 cmath 函数必须先导入
 '''
 
-
 x = -10.2
 
 print(abs(x))  # 绝对值
-print(math.ceil(x))  # 向上取整 -10
+print(round(4.5))  # 四舍五入
 
-# 2.数字比较大小
+print(math.ceil(x))  # 向上取整 -10
+print(math.exp(1))  # 返回e的x次幂(ex),如math.exp(1) 返回2.718281828459045
+
+print(math.exp(1))  # 绝对值
+print(math.exp(1))  # 绝对值
+
+# 2.数字比较大小operator
 # print(math.cmp(10, 20))  # 如果 x < y 返回 -1, 如果 x == y 返回 0, 如果 x > y 返回 1 ,python3无法使用
 a = 1
 b = 2
 print(operator.lt(a, b))  # a < b 结果:True
-print(operator.lt(a, b))  # a < b 结果:True
-print(operator.lt(a, b))  # a < b 结果:True
-print(operator.lt(a, b))  # a < b 结果:True
-print(operator.lt(a, b))  # a < b 结果:True
-
-print(math.exp(1))  # 返回e的x次幂(ex),如math.exp(1) 返回2.718281828459045
-print(math.exp(1))  # 绝对值
-print(math.exp(1))  # 绝对值
-print(math.exp(1))  # 绝对值
+print(operator.le(a, b))  # a <= b 结果:
+print(operator.eq(a, b))  # a == b 结果:
+print(operator.ne(a, b))  # a != b 结果:
+print(operator.gt(a, b))  # a > b 结果:
+print(operator.ge(a, b))  # a >= b 结果:
