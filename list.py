@@ -61,14 +61,15 @@ list.copy()         复制列表
 '''
 list = ['Google', 'Runoob', 'Taobao1']
 print("list:", list)
-list.append(['hahaha'])
+list.append('hahaha')
 print("append后list:", list)
 list4 = [2, 2, 2, 4, 4, 4, 46, 66, 0, 1]
 print("统计某个元素在列表中出现的次数:", list4.count(4))
 
 list5 = [1, 2, 3, 4]
 list6 = [0, 2, 3, 4]
-print("用新列表扩展原来的列表:", list5.extend(list6))
+list5.extend(list6)
+print("用新列表扩展原来的列表:", list5)
 list.sort()
 print("list排序:", list)
 # 降序
