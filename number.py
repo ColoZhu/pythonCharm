@@ -54,6 +54,26 @@ print("随机排序列表 : ", list2)  # 将序列的所有元素随机排序
 print("uniform(5, 10) 的随机浮点数 : ", random.uniform(5, 10))
 
 # 3.Python三角函数
+'''
+acos(x)	返回x的反余弦弧度值。
+asin(x)	返回x的反正弦弧度值。
+atan(x)	返回x的反正切弧度值。
+atan2(y, x)	返回给定的 X 及 Y 坐标值的反正切值。
+cos(x)	返回x的弧度的余弦值。
+hypot(x, y)	返回欧几里德范数 sqrt(x*x + y*y)。
+sin(x)	返回的x弧度的正弦值。
+tan(x)	返回x弧度的正切值。
+degrees(x)	将弧度转换为角度,如degrees(math.pi/2) ， 返回90.0
+radians(x)	将角度转换为弧度
+'''
+print("acos(0.64) : ", math.acos(0.64))
+print("acos(0) : ", math.acos(0))
+print("acos(-1) : ", math.acos(-1))
+print("acos(1) : ", math.acos(1))
+print("cos(3) : ", math.cos(3))
+print("cos(45) : ", math.cos(45))
+print("tan(math.pi) : ", math.tan(math.pi))  # 数学常量 pi（圆周率，一般以π来表示）
+# 数学常量 e，e即自然常数（自然常数）。
 
 
 # 4.数字比较大小operator
