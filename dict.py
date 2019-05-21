@@ -36,6 +36,9 @@ print(type(dict))  # 返回输入的变量类型  --><class 'dict'>
 
 # 5.内置方法
 dict5 = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
+del dict5['Name']  # 删除键 'Name  --> {'Age': 7, 'Class': 'First'}
+print("del name", dict5)
+
 dict5.clear()  # 删除字典内所有元素
 print(dict5)
 
