@@ -85,3 +85,10 @@ union()	        返回两个集合的并集
 update()	    给集合添加元素
 
 '''
+
+x = {"apple", "banana", "cherry"}
+y = {"google", "runoob", "apple"}
+
+z = x.union(y)
+
+print(z)  # {'apple', 'cherry', 'banana', 'google', 'runoob'}
