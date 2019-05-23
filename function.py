@@ -226,5 +226,51 @@ def test():
 定义在---函数内部---的变量拥有一个---局部作用域---，定义在  ---函数外---的拥有---全局作用域---。
 局部变量只能在其被声明的函数内部访问，而全局变量可以在整个程序范围内访问。调用函数时，所有在函数内声明的变量名称都将被加入到作用域中。如下实例：
 '''
-#global 和 nonlocal关键字
+# global 和 nonlocal关键字
+'''
+    当内部作用域想修改外部作用域的变量时，就要用到global和nonlocal关键字了。
+    如果要修改嵌套作用域（enclosing 作用域，外层非全局作用域）中的变量则需要 nonlocal 关键字了
+'''
+# global
+num = 1
 
+
+def fun1():
+    global num  # 需要使用 global 关键字声明
+    print(num)
+    num = 1233333
+    print(num)
+
+
+fun1()
+print(num)
+
+
+# nonlocal
+def outer():
+    num = 10
+
+    def inner():
+        nonlocal num  # nonlocal关键字声明
+        num = 100
+        print("inner ", num)  # 100
+
+    inner()
+    print("outer ", num)  # 不加nonlocal关键字声明-->10,加关键字 100
+
+
+outer()
+
+##!/usr/bin/python3
+
+a = 10
+
+
+# def test():  #错误信息为局部作用域引用错误，因为 test 函数中的 a 使用的是局部，未定义，无法修改。
+def test(a):  # 修改 a 为全局变量，通过函数参数传递，可以正常执行输出结果为：
+
+    a = a + 1  # test()调用报错
+    print(a)
+
+
+test()
