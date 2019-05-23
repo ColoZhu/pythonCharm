@@ -261,8 +261,7 @@ def outer():
 
 outer()
 
-##!/usr/bin/python3
-
+# 特殊情况
 a = 10
 
 
