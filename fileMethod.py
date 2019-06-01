@@ -1,18 +1,5 @@
 import os
 
-# os.makedirs('I:\\pythonWorkPace')  # 创建文件夹
-
-path = 'D:\\pythonWorkPace'
-filelist = os.listdir(path)  # 获取文件夹里面文件列表
-print(filelist)
-# 统计文件夹下面文件的所有文件大小
-totalSize = 0;
-for fileName in filelist:
-    fileSize = os.path.getsize(os.path.join(path, fileName))
-    print("当前文件的大小:%s" % (fileSize))
-    totalSize = totalSize + os.path.getsize(os.path.join(path, fileName))
-print("文件总大小:%s" % (totalSize))
-
 # file 对象
 '''
 file.close()
@@ -45,17 +32,31 @@ file.writelines(sequence)
 
 '''
 
-# 打开文件
+# 1.tell()
 fileTestPath = "D:\\pythonWorkspace\\pythonCharm\\fileTest3";
-fo = open(fileTestPath, "r+")
+fo = open(fileTestPath, "r+")  # 打开一个文件用于读写。文件指针将会放在文件的开头。
+
 print("文件名为: ", fo.name)
 
 line = fo.readline()
-print("读取的数据为: %s" % (line))
+print("读取的数据为: %s" % (line))  # --> 读取的数据为: 123123
 
 # 获取当前文件位置
 pos = fo.tell()
-print("当前位置: %d" % (pos))
+print("当前位置: %d" % (pos))  # -->当前位置: 8
+
+# 关闭文件
+fo.close()
+
+# 2.next() ,测试到结尾会报错
+'''
+Python 3 的内置函数 next() 通过迭代器调用 __next__() 方法返回下一项。 在循环中，next()方法会在每次循环中调用，该方法返回文件的下一行，如果到达结尾(EOF),则触发 StopIteration
+
+'''
+fo = open(fileTestPath, "r")  # 只读方式
+for index in range(5):
+    line = next(fo)
+    print("第 %d 行 - %s" % (index, line))
 
 # 关闭文件
 fo.close()
