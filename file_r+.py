@@ -1,4 +1,4 @@
-import os
+import osTest
 
 '''
 w+每次打开文件，都会清空之前的内容，若文件不存在，则会自动创建
@@ -9,7 +9,7 @@ r+会在之前的基础上追加内容，但是不会创建文件
 filePath = 'I:\\pythonWorkPace\\py3.txt'
 
 # f = open(filePath, 'r+', encoding='utf-8')  # 必须事先知道文件的编码格式，这里文件编码是使用的utf-8
-if os.path.exists(filePath):
+if osTest.path.exists(filePath):
     f = open(filePath, 'r+', encoding='utf-8')
 else:
     f = open(filePath, 'w+', encoding='utf-8')
