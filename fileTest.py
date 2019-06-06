@@ -1,4 +1,5 @@
 import os, sys
+import pathlib
 
 '''
 os.remove(path)
@@ -19,7 +20,7 @@ fileTestPath1 = "C:\\Users\\600336\\PycharmProjects\\hello\\test\\3";
 fileTestPath2 = "C:\\Users\\600336\\PycharmProjects\\hello\\tmp";
 fileTestPath3 = "C:\\Users\\600336\\PycharmProjects\\hello\\tmp";
 
-# 删除文件夹和删除文件
+# 1. 删除文件夹和删除文件
 # 列出目录
 print("目录为: %s" % os.listdir(os.getcwd()))
 
@@ -42,7 +43,7 @@ print("目录为: %s" % os.listdir(os.getcwd()))
 '''
 
 
-# 定义创建文件的函数
+# 2. 定义创建文件的函数
 def mkdir(path):
     # 引入模块
     import os
@@ -75,3 +76,39 @@ print(mkdir(fileTestPath))  # --> False,目录已存在
 
 fileTestPath5 = "C:\\Users\\600336\\PycharmProjects\\hello\\testqwerty";
 print(mkdir(fileTestPath5))  # -->True ,创建成功
+
+# 3.os模块中的os.path.exists()方法用于检验文件是否存在。
+
+test_file = "C:\\Users\\600336\\PycharmProjects\\hello\\testqwerty";
+no_exist_file = "C:\\Users\\600336\\PycharmProjects\\hello\\testqwerty12321";
+
+res1 = os.path.exists(test_file)
+print("res1:", res1)  # -->True
+res2 = os.path.exists(no_exist_file)
+print("res2:", res2)  # -->False
+
+# 但是上面的方法不能判断是文件还是文件夹,
+# 只检查文件
+os.path.isfile("test-data")
+
+res3 = os.path.isfile(test_file)
+print("res3:", res3)  # -->False,对比res1不同,因为是文件夹 ,不是文件
+res4 = os.path.isfile(no_exist_file)
+print("res4:", res4)  # -->False
+
+# 使用pathlib模块,pathlib模块在Python3版本中是内建模块
+# ...检查路径是否存在
+notexistFile = "C:\\Users\\600336\\PycharmProjects\\hello\\test\\3232312321";
+existFile = "C:\\Users\\600336\\PycharmProjects\\hello\\test\\33";
+path1 = pathlib.Path(test_file)  # 存在的路径
+path2 = pathlib.Path(notexistFile)  # 不存在的路径
+print("path1.exists:", path1.exists())  # -->True
+print("path2.exists:", path2.exists())  # -->  False
+# ...检查路径是否是文件
+path3 = pathlib.Path(notexistFile)  # 不存在的
+path4 = pathlib.Path(test_file)  # 文件夹
+path5 = pathlib.Path(existFile)  # 文件
+
+print("path3.is_file:", path3.is_file())  # -->False
+print("path4.is_file:", path4.is_file())  # -->  False
+print("path5.is_file:", path5.is_file())  # -->  True
