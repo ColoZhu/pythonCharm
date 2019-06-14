@@ -96,3 +96,7 @@ class Child(Parent):
 c = Child()          # 子类实例
 c.myMethod()         # 子类调用重写方法
 super(Child,c).myMethod() #用子类对象调用父类已被覆盖的方法
+
+
+
+
