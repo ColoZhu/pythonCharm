@@ -69,3 +69,12 @@ import math
 print(math.cos(math.pi / 4))  # --> 0.7071067811865476
 
 print(math.log(1024, 2))  # --> 10.0
+
+# random提供了生成随机数的工具。
+import random
+
+random.choice(['apple', 'pear', 'banana'])
+list = random.sample(range(100), 10)
+print('list', list)  # -->[46, 64, 58, 49, 93, 43, 27, 8, 42, 2]
+
+print(random.randrange(6))  # -->1
