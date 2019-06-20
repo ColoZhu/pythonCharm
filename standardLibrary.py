@@ -78,3 +78,80 @@ list = random.sample(range(100), 10)
 print('list', list)  # -->[46, 64, 58, 49, 93, 43, 27, 8, 42, 2]
 
 print(random.randrange(6))  # -->1
+
+# 8.访问 互联网
+'''
+有几个模块用于访问互联网以及处理网络通信协议。其中最简单的两个是用于处理从 urls 接收的数据的 urllib.request 以及用于发送电子邮件的 smtplib:
+'''
+
+from urllib.request import urlopen
+
+url = "http://tycho.usno.navy.mil/cgi-bin/timer.pl"
+url1 = "https://www.baidu.com/"
+url_yurongtong = "http://cfs-test.yupeiholdings.com:8083/cfs-qt/home.shtml"
+for line in urlopen(url_yurongtong):
+    line = line.decode('utf-8')  # Decoding the binary data to text.
+    if 'EST' in line or 'EDT' in line:  # 查看东部时间
+        print(line)
+
+# import smtplib
+import smtplib
+
+# 本例 需要本地有一个在运行的邮件服务器。
+# server = smtplib.SMTP('localhost')
+#
+# server.sendmail('soothsayer@example.org', 'jcaesar@example.org',
+#                 """To: jcaesar@example.org
+#                  From: soothsayer@example.org
+#                 Beware the Ides of March.
+#                  """)
+# server.quit()
+
+# 9.日期和时间
+'''
+datetime模块为日期和时间处理同时提供了简单和复杂的方法。
+支持日期和时间算法的同时，实现的重点放在更有效的处理和格式化输出。
+该模块还支持时区处理:
+'''
+from datetime import date
+
+now = date.today()  # 当天日期
+print("now:", now)  # --> 2019-06-20
+
+d1 = date(2003, 12, 2)  # 格式化日期
+print("d1:", d1)  # --> 2003-12-02
+print(now.strftime("%m-%d-%y. %d %b %Y is a %A on the %d day of %B."))  # 格式化
+# -->06-20-19. 20 Jun 2019 is a Thursday on the 20 day of June.
+# 支持计算
+birthday = date(1992, 4, 4)
+age = now - birthday
+print('已经过了天数:', age.days)  # -->9938
+
+# 10.数据压缩
+# 以下模块直接支持通用的数据打包和压缩格式：zlib，gzip，bz2，zipfile，以及 tarfile。
+import zlib
+
+s = b'witch which has which witches wrist watch'
+print("s.length:", len(s))  # -->41
+
+t = zlib.compress(s)  # 压缩
+print("t.length:", len(t))  # -->37
+b1 = zlib.decompress(t)  # 解压
+print(b1)  # -->b'witch which has which witches wrist watch'
+print("b1.length:", len(b1))  # -->41
+
+# 11.性能度量
+'''
+有些用户对了解解决同一问题的不同方法之间的性能差异很感兴趣。Python 提供了一个度量工具，为这些问题提供了直接答案。
+例如，使用元组封装和拆封来交换元素看起来要比使用传统的方法要诱人的多,timeit 证明了现代的方法更快一些。
+相对于 timeit 的细粒度，:mod:profile 和 pstats 模块提供了针对更大代码块的时间度量工具。
+'''
+from timeit import Timer
+
+time1 = Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
+print("time1:", time1)  # 0.022810433999999935
+
+time2 = Timer('a,b = b,a', 'a=1; b=2').timeit()
+print("time2:", time2)  # 0.020468804000000063
+
+# 12.测试模块
