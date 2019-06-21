@@ -113,7 +113,7 @@ datetime模块为日期和时间处理同时提供了简单和复杂的方法。
 支持日期和时间算法的同时，实现的重点放在更有效的处理和格式化输出。
 该模块还支持时区处理:
 '''
-from datetime import date
+from datetime import date, timedelta, time
 
 now = date.today()  # 当天日期
 print("now:", now)  # --> 2019-06-20
@@ -155,3 +155,103 @@ time2 = Timer('a,b = b,a', 'a=1; b=2').timeit()
 print("time2:", time2)  # 0.020468804000000063
 
 # 12.测试模块
+'''
+doctest模块提供了一个工具，扫描模块并根据程序中内嵌的文档字符串执行测试。
+unittest模块不像 doctest模块那么容易使用，不过它可以在一个独立的文件里提供一个更全面的测试集:
+'''
+
+
+def average(values):
+    """Computes the arithmetic mean of a list of numbers."""
+
+    # print(average([20, 30, 70]))
+    return sum(values) / len(values)
+
+
+import doctest
+
+doctest.testmod()  # 自动验证嵌入测试
+
+# import unittest
+#
+#
+# class TestStatisticalFunctions(unittest.TestCase):
+#
+#     def test_average(self):
+#         self.assertEqual(average([20, 30, 70]), 40.0)
+#         self.assertEqual(round(average([1, 5, 7]), 1), 4.3)
+#         self.assertRaises(ZeroDivisionError, average, [])
+#         self.assertRaises(TypeError, average, 20, 30, 70)
+#
+#
+# unittest.main()  # Calling from the command line invokes all tests
+
+# 13.关于urlopen的补充
+# 处理get请求，不传data，则为get请求
+
+from urllib.request import urlopen
+from urllib.parse import urlencode
+
+url = 'http://localhost:8085/yptms/login.shtml'
+data = {"username": "admin", "password": "yupei123"}
+req_data = urlencode(data)  # 将字典类型的请求数据转变为url编码
+res = urlopen(url + '?' + req_data)  # 通过urlopen方法访问拼接好的url
+res = res.read().decode()  # read()方法是读取返回数据内容，decode是转换返回数据的bytes格式为str
+print("res")
+# print(res)
+
+# 处理post请求,如果传了data，则为post请求
+
+print("--------------------------------")
+from urllib.request import Request
+from urllib.parse import urlencode
+
+data = {"username": "admin", "password": 123456}
+data = urlencode(data)  # 将字典类型的请求数据转变为url编码
+data = data.encode('ascii')  # 将url编码类型的请求数据转变为bytes类型
+req_data = Request(url, data)  # 将url和请求数据处理为一个Request对象，供urlopen调用
+with urlopen(req_data) as res:
+    res = res.read().decode()  # read()方法是读取返回数据内容，decode是转换返回数据的bytes格式为str
+
+# print(res)
+
+
+# 14.时间和日期补充
+# 常用时间处理方法
+import time
+import datetime
+
+today = date.today()  # 今天  -->  2019-06-21
+print(today)
+yesterday = today - timedelta(days=1)  # 昨天   -->    2019-06-20
+print(yesterday)
+
+last_month = today.month - 1 if today.month - 1 else 12
+print(last_month)  # 上个月    -->    5
+
+time_stamp = time.time()
+
+print(time_stamp)  # 当前时间戳    -->  1561077887.9176207
+print(int(time.time()))  # -->  1561077887
+
+# 时间戳转datetime
+d1 = datetime.datetime.fromtimestamp(time_stamp)  # 2019-06-21 08:47:37.636591
+print(d1)
+
+#  datetime转时间戳
+
+dti = int(time.mktime(today.timetuple()))  # 1561046400
+print("dti:", dti)
+
+# datetime转字符串
+today_str = today.strftime("%Y-%m-%d")
+print("today_str:", today_str)
+
+# 字符串转datetime
+today = datetime.datetime.strptime(today_str, "%Y-%m-%d")  # --> 2019-06-21
+
+print("today:", today)  # --> 2019-06-21 00:00:00
+
+# 补时差
+tadaySuper = today + datetime.timedelta(hours=8)  #-->2019-06-21 08:00:00
+print("tadaySuper:", tadaySuper)
