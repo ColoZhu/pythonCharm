@@ -43,8 +43,11 @@ def quickSort(arr, low, high):
         print(arr)
 
 
-#测试demo
+# 测试demo
 arr = [10, 7, 3, 8, 2, 9, 1, 5]
 n = len(arr)
 quickSort(arr, 0, n - 1)
 print("排序后的数组:", arr)  # -->排序后的数组: [1, 5, 7, 8, 9, 10]
+
+for i in range(1000):
+  print("您有一份饿了么订单!")
