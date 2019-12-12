@@ -5,7 +5,7 @@ class TrieDemo:
 
     def __init__(self):  # 初始化
         self.root = {}
-        self.end = -1
+        self.end = -1   #表示是否为叶子结点
 
     def insert(self, word):  # 插入数据
         curNode = self.root
@@ -28,7 +28,7 @@ class TrieDemo:
 
         return True
 
-    def startsWith(self, prefix):
+    def startsWith(self, prefix): # 根据前缀判断是否在trie树
         curNode = self.root
         for c in prefix:
             if not c in curNode:
