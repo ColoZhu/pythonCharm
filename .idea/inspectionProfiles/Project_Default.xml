@@ -12,6 +12,8 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="mytest.xrange" />
+          <option value="StringIO" />
+          <option value="excel.Demo.*" />
         </list>
       </option>
     </inspection_tool>
